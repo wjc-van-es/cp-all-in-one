@@ -1,0 +1,388 @@
+### From https://docs.confluent.io/5.5.4/quickstart/cos-docker-quickstart.html ###
+### Just doing step 1 and checking images, networks, containers and volumes ###
+### Remind me to use docker compose instead of docker-compose, the latter is deprecated ###
+### Pruning all volumes after docker compose down, all were gone ###
+### (the previous zookeeper with single broker setup with the test-topic will be gone as well ###
+willem@linux-laptop:~/git/cp-all-in-one$ cd cp-all-in-one-community/
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker-compose up -d
+Creating network "cp-all-in-one-community_default" with the default driver
+Pulling zookeeper (confluentinc/cp-zookeeper:7.2.1)...
+7.2.1: Pulling from confluentinc/cp-zookeeper
+Digest: sha256:a09fad082e136eb63c1b63c4a13c7b90ec9584a8d03c70a61fc94a4137bf2a09
+Status: Downloaded newer image for confluentinc/cp-zookeeper:7.2.1
+Pulling broker (confluentinc/cp-kafka:7.2.1)...
+7.2.1: Pulling from confluentinc/cp-kafka
+Digest: sha256:7494848da233258a5fae32abac99b7befee3c089b8d4da039420ac403920118b
+Status: Downloaded newer image for confluentinc/cp-kafka:7.2.1
+Pulling schema-registry (confluentinc/cp-schema-registry:7.2.1)...
+7.2.1: Pulling from confluentinc/cp-schema-registry
+1e09a5ee0038: Already exists
+0d725b91398e: Already exists
+c1ad73dc9218: Already exists
+5bed55f66350: Already exists
+269e165f0b04: Already exists
+17c0d85f63fb: Already exists
+c8691bd077ad: Already exists
+56a335333716: Already exists
+e5bdbd714f99: Already exists
+1722b4da8c97: Pull complete
+8ec15ef058fd: Pull complete
+Digest: sha256:1934ba0e2d44eedf5a852037248a367e58ab54b910c31804b069f93e8831d8e3
+Status: Downloaded newer image for confluentinc/cp-schema-registry:7.2.1
+Pulling connect (cnfldemos/kafka-connect-datagen:0.5.3-7.1.0)...
+0.5.3-7.1.0: Pulling from cnfldemos/kafka-connect-datagen
+a9e23b64ace0: Pulling fs layer
+38b71301a1d9: Pulling fs layer
+a6167da2033d: Pull complete
+316f193487da: Pull complete
+ab53ac7b177d: Pull complete
+ac64979388a9: Pull complete
+4fa36883e4d6: Pull complete
+f1f5c1327dc0: Pull complete
+82ac3bff2516: Pull complete
+fba78acf861b: Pull complete
+b72b3f294684: Pull complete
+183ee53d45f3: Pull complete
+36012bfef34b: Pull complete
+89352efc9955: Pull complete
+539a4f69b8db: Pull complete
+Digest: sha256:430d92037536c632d3433ba6a3cb15d5fb63448eb3b928198737366107972ae2
+Status: Downloaded newer image for cnfldemos/kafka-connect-datagen:0.5.3-7.1.0
+Pulling ksqldb-server (confluentinc/cp-ksqldb-server:7.2.1)...
+7.2.1: Pulling from confluentinc/cp-ksqldb-server
+1e09a5ee0038: Already exists
+0d725b91398e: Already exists
+c1ad73dc9218: Already exists
+5bed55f66350: Already exists
+269e165f0b04: Already exists
+17c0d85f63fb: Already exists
+c8691bd077ad: Already exists
+56a335333716: Already exists
+e5bdbd714f99: Already exists
+2fc6a198aed3: Pull complete
+4e7fb53393a5: Pull complete
+ce3ec6248888: Pull complete
+2b2e7c3ae445: Pull complete
+97beddf3d07f: Pull complete
+ff5b9deb6993: Pull complete
+69491d615b9d: Pull complete
+1a9a36e39c00: Pull complete
+d76f62537990: Pull complete
+bc425a723894: Pull complete
+0a51a3357a10: Pull complete
+9b5b4bfd50f3: Pull complete
+Digest: sha256:33c19570f56028494766305d9f5a92f5d7aaaa109275cb15356a79513b0bc61b
+Status: Downloaded newer image for confluentinc/cp-ksqldb-server:7.2.1
+Pulling ksqldb-cli (confluentinc/cp-ksqldb-cli:7.2.1)...
+7.2.1: Pulling from confluentinc/cp-ksqldb-cli
+1e09a5ee0038: Already exists
+0d725b91398e: Already exists
+c1ad73dc9218: Already exists
+5bed55f66350: Already exists
+269e165f0b04: Already exists
+17c0d85f63fb: Already exists
+c8691bd077ad: Already exists
+56a335333716: Already exists
+e5bdbd714f99: Already exists
+56cf4c152541: Pull complete
+17fce9d4830b: Pull complete
+67cc97544a4c: Pull complete
+5328f4a2ddbd: Pull complete
+7fd627a741ee: Pull complete
+889d5a47e475: Pull complete
+beef813e48ab: Pull complete
+9e7410e49e5b: Pull complete
+Digest: sha256:644123e93c12fcf10a25d1d1e9ccb726af8de0197bdbf9496f15de462101c5eb
+Status: Downloaded newer image for confluentinc/cp-ksqldb-cli:7.2.1
+Pulling ksql-datagen (confluentinc/ksqldb-examples:7.2.1)...
+7.2.1: Pulling from confluentinc/ksqldb-examples
+1e09a5ee0038: Already exists
+0d725b91398e: Already exists
+c1ad73dc9218: Already exists
+5bed55f66350: Already exists
+269e165f0b04: Already exists
+17c0d85f63fb: Already exists
+c8691bd077ad: Already exists
+56a335333716: Already exists
+e5bdbd714f99: Already exists
+c54f0d13ab08: Pull complete
+68135c6d94fa: Pull complete
+4be38e7e22a5: Pull complete
+d2935aa176ac: Pull complete
+Digest: sha256:5a59f4a9c6cca4563dd9347b1bf78d99d06ed4dc64e29ae502af016e60406a39
+Status: Downloaded newer image for confluentinc/ksqldb-examples:7.2.1
+Pulling rest-proxy (confluentinc/cp-kafka-rest:7.2.1)...
+7.2.1: Pulling from confluentinc/cp-kafka-rest
+1e09a5ee0038: Already exists
+0d725b91398e: Already exists
+c1ad73dc9218: Already exists
+5bed55f66350: Already exists
+269e165f0b04: Already exists
+17c0d85f63fb: Already exists
+c8691bd077ad: Already exists
+56a335333716: Already exists
+932f6f7cc2de: Pull complete
+b1e63230739f: Pull complete
+Digest: sha256:22917ed388dda5eb420079eda44c3e32a9774b27de7336754f3ac92427e4c3f6
+Status: Downloaded newer image for confluentinc/cp-kafka-rest:7.2.1
+Creating zookeeper ... done
+Creating broker    ... done
+Creating schema-registry ... done
+Creating rest-proxy      ... done
+Creating connect         ... done
+Creating ksqldb-server   ... done
+Creating ksqldb-cli      ... done
+Creating ksql-datagen    ... done
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker-compose ps
+     Name                    Command                       State                                                                        Ports
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+broker            /etc/confluent/docker/run        Up                      0.0.0.0:29092->29092/tcp,:::29092->29092/tcp, 0.0.0.0:9092->9092/tcp,:::9092->9092/tcp, 0.0.0.0:9101->9101/tcp,:::9101->9101/tcp
+connect           /etc/confluent/docker/run        Up (health: starting)   0.0.0.0:8083->8083/tcp,:::8083->8083/tcp, 9092/tcp
+ksql-datagen      bash -c echo Waiting for K ...   Up
+ksqldb-cli        /bin/sh                          Up
+ksqldb-server     /etc/confluent/docker/run        Up                      0.0.0.0:8088->8088/tcp,:::8088->8088/tcp
+rest-proxy        /etc/confluent/docker/run        Up                      0.0.0.0:8082->8082/tcp,:::8082->8082/tcp
+schema-registry   /etc/confluent/docker/run        Up                      0.0.0.0:8081->8081/tcp,:::8081->8081/tcp
+zookeeper         /etc/confluent/docker/run        Up                      0.0.0.0:2181->2181/tcp,:::2181->2181/tcp, 2888/tcp, 3888/tcp
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker images
+REPOSITORY                        TAG           IMAGE ID       CREATED        SIZE
+confluentinc/ksqldb-examples      7.2.1         ae252c2780c4   4 weeks ago    815MB
+confluentinc/cp-ksqldb-server     7.2.1         140d2ac32177   4 weeks ago    1.36GB
+confluentinc/cp-ksqldb-cli        7.2.1         287039530a46   4 weeks ago    857MB
+confluentinc/cp-schema-registry   7.2.1         afaac043dcc1   4 weeks ago    1.86GB
+confluentinc/cp-kafka             7.2.1         d893473a6510   4 weeks ago    782MB
+confluentinc/cp-kafka             latest        d893473a6510   4 weeks ago    782MB
+confluentinc/cp-zookeeper         7.2.1         3f28db6a433d   4 weeks ago    782MB
+confluentinc/cp-zookeeper         latest        3f28db6a433d   4 weeks ago    782MB
+confluentinc/cp-kafka-rest        7.2.1         784b8061ad0c   4 weeks ago    1.76GB
+cnfldemos/kafka-connect-datagen   0.5.3-7.1.0   de0e2396b904   4 months ago   1.46GB
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker ps -a
+CONTAINER ID   IMAGE                                         COMMAND                  CREATED         STATUS                            PORTS                                                                                                                                 NAMES
+d4d61e47d992   confluentinc/cp-ksqldb-cli:7.2.1              "/bin/sh"                2 minutes ago   Up 2 minutes                                                                                                                                                            ksqldb-cli
+4cd61bbe9cae   confluentinc/ksqldb-examples:7.2.1            "bash -c 'echo Waiti…"   2 minutes ago   Up About a minute                                                                                                                                                       ksql-datagen
+eac9f914a44a   confluentinc/cp-ksqldb-server:7.2.1           "/etc/confluent/dock…"   2 minutes ago   Up 2 minutes                      0.0.0.0:8088->8088/tcp, :::8088->8088/tcp                                                                                             ksqldb-server
+14eb488b8639   cnfldemos/kafka-connect-datagen:0.5.3-7.1.0   "/etc/confluent/dock…"   2 minutes ago   Up 2 minutes (health: starting)   0.0.0.0:8083->8083/tcp, :::8083->8083/tcp, 9092/tcp                                                                                   connect
+8fcc8d2a38f4   confluentinc/cp-kafka-rest:7.2.1              "/etc/confluent/dock…"   2 minutes ago   Up 2 minutes                      0.0.0.0:8082->8082/tcp, :::8082->8082/tcp                                                                                             rest-proxy
+58852689bd91   confluentinc/cp-schema-registry:7.2.1         "/etc/confluent/dock…"   2 minutes ago   Up 2 minutes                      0.0.0.0:8081->8081/tcp, :::8081->8081/tcp                                                                                             schema-registry
+e9f35ab46c30   confluentinc/cp-kafka:7.2.1                   "/etc/confluent/dock…"   2 minutes ago   Up 2 minutes                      0.0.0.0:9092->9092/tcp, :::9092->9092/tcp, 0.0.0.0:9101->9101/tcp, :::9101->9101/tcp, 0.0.0.0:29092->29092/tcp, :::29092->29092/tcp   broker
+3a118bfa40e8   confluentinc/cp-zookeeper:7.2.1               "/etc/confluent/dock…"   2 minutes ago   Up 2 minutes                      2888/tcp, 0.0.0.0:2181->2181/tcp, :::2181->2181/tcp, 3888/tcp                                                                         zookeeper
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker volume ls
+DRIVER    VOLUME NAME
+local     0d5579f4ededa0fdfa316225f8952ad55bb9f1af4d1cdad898bdfd02c5cad0c8
+local     0e0682f8e9020aaddf9e6e1970709f40117ce6b3ba134371e6584d37db52fafc
+local     4abf75057c17d9f86cb6b67a711f1fedeee8d3a77284364f4805fba6b963aa63
+local     5ba0699dd865fe4eebd4d0a9d02b0989cd69104578a2a3851749eca1f288abd4
+local     5d9723b1bc42327b4cf416c2feebb133a84a98fce40d1482c6ec70f27b47decf
+local     6e2121cbe3005be589645c7b25480492889f0bbfaf90f5263a51c36482c0f03e
+local     7a37677b9f5804fc0261b46970f7d1d14357961cb620e1ab0e515511ab8091c6
+local     031eb4456ca987b6d0f8509b026894707319aaf1996babf855d3dd01da0737a9
+local     90fea67c5020766242a6e7643ec44c4d3f4ea21825f6d414723be9a8e74db6ef
+local     95bbba5812438f1db8c9c3ae37f49f4cda979651066cef3a8d649ce1c9ba235c
+local     363ad9a59883016843236b25b511615d8267233186a1c516b2ad7ed87fe7bca5
+local     0984c1f3984002d27d339fe01d37f22499b1c0c1faf0d4bf27a9502a486f2f45
+local     20312ed44378cb94c1be907471b131aa5e532d6c9557ee27b77eaa5f15e19a3e
+local     91192ec31c6a670ac35eac6bfad33e6aa543b383a3d7983e669c5f44ae579e07
+local     455705a4c9931a6217a66d7bf4e5dd771af5c80fc0a76e42567bbda92f0c958e
+local     a1c99873ab94381b16f816a74edf266db59b422a7677397c6e7aa491e2f156b7
+local     cc8452b486c590df2f3a61c7e88762ce08a3a16048d6218876b8cbfbec2a079e
+local     d981c3963b172ed43f78792b263636889905f25a6b10590571389fa6ca707d4e
+local     d71113101c51ee387ca436135b19c9f01850a63744c0f108e7a99cc6b67b0c5a
+local     f21e7fa47da0dca37cbd718a4c4cb51c9781fd6d01e61708afdc2e0c24422681
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker volume prune
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+4abf75057c17d9f86cb6b67a711f1fedeee8d3a77284364f4805fba6b963aa63
+d981c3963b172ed43f78792b263636889905f25a6b10590571389fa6ca707d4e
+20312ed44378cb94c1be907471b131aa5e532d6c9557ee27b77eaa5f15e19a3e
+455705a4c9931a6217a66d7bf4e5dd771af5c80fc0a76e42567bbda92f0c958e
+0d5579f4ededa0fdfa316225f8952ad55bb9f1af4d1cdad898bdfd02c5cad0c8
+d71113101c51ee387ca436135b19c9f01850a63744c0f108e7a99cc6b67b0c5a
+f21e7fa47da0dca37cbd718a4c4cb51c9781fd6d01e61708afdc2e0c24422681
+363ad9a59883016843236b25b511615d8267233186a1c516b2ad7ed87fe7bca5
+7a37677b9f5804fc0261b46970f7d1d14357961cb620e1ab0e515511ab8091c6
+95bbba5812438f1db8c9c3ae37f49f4cda979651066cef3a8d649ce1c9ba235c
+
+Total reclaimed space: 201.4MB
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker volume ls
+DRIVER    VOLUME NAME
+local     0e0682f8e9020aaddf9e6e1970709f40117ce6b3ba134371e6584d37db52fafc
+local     5ba0699dd865fe4eebd4d0a9d02b0989cd69104578a2a3851749eca1f288abd4
+local     5d9723b1bc42327b4cf416c2feebb133a84a98fce40d1482c6ec70f27b47decf
+local     6e2121cbe3005be589645c7b25480492889f0bbfaf90f5263a51c36482c0f03e
+local     031eb4456ca987b6d0f8509b026894707319aaf1996babf855d3dd01da0737a9
+local     90fea67c5020766242a6e7643ec44c4d3f4ea21825f6d414723be9a8e74db6ef
+local     0984c1f3984002d27d339fe01d37f22499b1c0c1faf0d4bf27a9502a486f2f45
+local     91192ec31c6a670ac35eac6bfad33e6aa543b383a3d7983e669c5f44ae579e07
+local     a1c99873ab94381b16f816a74edf266db59b422a7677397c6e7aa491e2f156b7
+local     cc8452b486c590df2f3a61c7e88762ce08a3a16048d6218876b8cbfbec2a079e
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker network ls
+NETWORK ID     NAME                              DRIVER    SCOPE
+a42919b39017   bridge                            bridge    local
+60b1b4d73e99   cp-all-in-one-community_default   bridge    local
+fb9f07672f4c   host                              host      local
+f22bbd812450   none                              null      local
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker network inspect cp-all-in-one-community_default
+[
+    {
+        "Name": "cp-all-in-one-community_default",
+        "Id": "60b1b4d73e9905c85af1e3927ef389fd3c155b5eeab66c23da357edc85cbb2e1",
+        "Created": "2022-08-15T21:33:32.964065251+02:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": true,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "14eb488b86399644da96bdec7d7a1be499004e9ca0ee1727063d02d84d1d58cc": {
+                "Name": "connect",
+                "EndpointID": "40ec79e1861c8bfd81b846814eed5440262a770fb3cdc86c1bfb6c940dfce9c3",
+                "MacAddress": "02:42:ac:12:00:06",
+                "IPv4Address": "172.18.0.6/16",
+                "IPv6Address": ""
+            },
+            "3a118bfa40e8781e767dcd4f3aeccefe7bcf2d2020f729eddefdb88827a6a3fc": {
+                "Name": "zookeeper",
+                "EndpointID": "14142ce480df5a980aebce8c94fbb1757060659e241cf20e277d74b52e3090d9",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            },
+            "4cd61bbe9caee62fdba9d1f6bcb7d24a36ae2087d4f88f7771d09448dc6f658d": {
+                "Name": "ksql-datagen",
+                "EndpointID": "d4f8dfc7c9e7f7027d892c25c1221160acd55410174ee6b9bf522abf8a365585",
+                "MacAddress": "02:42:ac:12:00:09",
+                "IPv4Address": "172.18.0.9/16",
+                "IPv6Address": ""
+            },
+            "58852689bd9118b4ac1f2e08afb76e0c347a6aea84d7ab19044a67a80fbf7919": {
+                "Name": "schema-registry",
+                "EndpointID": "bac83ce97c44a6bd56f914ccbd2458978508c4bb9fc2e90838724f2382e302b3",
+                "MacAddress": "02:42:ac:12:00:04",
+                "IPv4Address": "172.18.0.4/16",
+                "IPv6Address": ""
+            },
+            "8fcc8d2a38f4ef87b79f9981d5f0b462f9698e21518fe72c15b0ab78be820294": {
+                "Name": "rest-proxy",
+                "EndpointID": "e96149f13bfbfa22d7e1b0d29c00f3d4f64a971777f0af27391a897dbdc113c6",
+                "MacAddress": "02:42:ac:12:00:05",
+                "IPv4Address": "172.18.0.5/16",
+                "IPv6Address": ""
+            },
+            "d4d61e47d9920f68320d8219713e6f2cadeeaf74fb7f5b0fd4e0b8f59e1eb489": {
+                "Name": "ksqldb-cli",
+                "EndpointID": "247b815c551c572254ff2f4a36afc5e6d3fab08514f306aba57c90c85433e627",
+                "MacAddress": "02:42:ac:12:00:08",
+                "IPv4Address": "172.18.0.8/16",
+                "IPv6Address": ""
+            },
+            "e9f35ab46c3087504eff817a2d5418d0a9208c927a175077318e70850d6fca33": {
+                "Name": "broker",
+                "EndpointID": "4bf70b117dc337d3df408c22fda701870966e6e39e7ca89cc99374ee400455d8",
+                "MacAddress": "02:42:ac:12:00:03",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "eac9f914a44a405ec28f536bc1a11da605be7b6cc43ea04ca19490ac497553a2": {
+                "Name": "ksqldb-server",
+                "EndpointID": "86a6c39db4a26592b7ff45512ebd93e1eb1c3ec5e1d9608dd1d8c871a92f908c",
+                "MacAddress": "02:42:ac:12:00:07",
+                "IPv4Address": "172.18.0.7/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {
+            "com.docker.compose.network": "default",
+            "com.docker.compose.project": "cp-all-in-one-community",
+            "com.docker.compose.version": "1.29.2"
+        }
+    }
+]
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker-compose down
+Stopping ksqldb-cli      ... done
+Stopping ksql-datagen    ... done
+Stopping ksqldb-server   ... done
+Stopping connect         ... done
+Stopping rest-proxy      ... done
+Stopping schema-registry ... done
+Stopping broker          ... done
+Stopping zookeeper       ... done
+Removing ksqldb-cli      ... done
+Removing ksql-datagen    ... done
+Removing ksqldb-server   ... done
+Removing connect         ... done
+Removing rest-proxy      ... done
+Removing schema-registry ... done
+Removing broker          ... done
+Removing zookeeper       ... done
+Removing network cp-all-in-one-community_default
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+a42919b39017   bridge    bridge    local
+fb9f07672f4c   host      host      local
+f22bbd812450   none      null      local
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker volume ls
+DRIVER    VOLUME NAME
+local     0e0682f8e9020aaddf9e6e1970709f40117ce6b3ba134371e6584d37db52fafc
+local     5ba0699dd865fe4eebd4d0a9d02b0989cd69104578a2a3851749eca1f288abd4
+local     5d9723b1bc42327b4cf416c2feebb133a84a98fce40d1482c6ec70f27b47decf
+local     6e2121cbe3005be589645c7b25480492889f0bbfaf90f5263a51c36482c0f03e
+local     031eb4456ca987b6d0f8509b026894707319aaf1996babf855d3dd01da0737a9
+local     90fea67c5020766242a6e7643ec44c4d3f4ea21825f6d414723be9a8e74db6ef
+local     0984c1f3984002d27d339fe01d37f22499b1c0c1faf0d4bf27a9502a486f2f45
+local     91192ec31c6a670ac35eac6bfad33e6aa543b383a3d7983e669c5f44ae579e07
+local     a1c99873ab94381b16f816a74edf266db59b422a7677397c6e7aa491e2f156b7
+local     cc8452b486c590df2f3a61c7e88762ce08a3a16048d6218876b8cbfbec2a079e
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker volume prune
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+a1c99873ab94381b16f816a74edf266db59b422a7677397c6e7aa491e2f156b7
+90fea67c5020766242a6e7643ec44c4d3f4ea21825f6d414723be9a8e74db6ef
+5d9723b1bc42327b4cf416c2feebb133a84a98fce40d1482c6ec70f27b47decf
+0984c1f3984002d27d339fe01d37f22499b1c0c1faf0d4bf27a9502a486f2f45
+0e0682f8e9020aaddf9e6e1970709f40117ce6b3ba134371e6584d37db52fafc
+5ba0699dd865fe4eebd4d0a9d02b0989cd69104578a2a3851749eca1f288abd4
+031eb4456ca987b6d0f8509b026894707319aaf1996babf855d3dd01da0737a9
+91192ec31c6a670ac35eac6bfad33e6aa543b383a3d7983e669c5f44ae579e07
+cc8452b486c590df2f3a61c7e88762ce08a3a16048d6218876b8cbfbec2a079e
+6e2121cbe3005be589645c7b25480492889f0bbfaf90f5263a51c36482c0f03e
+
+Total reclaimed space: 67.13MB
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker volume ls
+DRIVER    VOLUME NAME
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker-compose ps
+Name   Command   State   Ports
+------------------------------
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$ docker images
+REPOSITORY                        TAG           IMAGE ID       CREATED        SIZE
+confluentinc/ksqldb-examples      7.2.1         ae252c2780c4   4 weeks ago    815MB
+confluentinc/cp-ksqldb-server     7.2.1         140d2ac32177   4 weeks ago    1.36GB
+confluentinc/cp-ksqldb-cli        7.2.1         287039530a46   4 weeks ago    857MB
+confluentinc/cp-schema-registry   7.2.1         afaac043dcc1   4 weeks ago    1.86GB
+confluentinc/cp-kafka             7.2.1         d893473a6510   4 weeks ago    782MB
+confluentinc/cp-kafka             latest        d893473a6510   4 weeks ago    782MB
+confluentinc/cp-zookeeper         7.2.1         3f28db6a433d   4 weeks ago    782MB
+confluentinc/cp-zookeeper         latest        3f28db6a433d   4 weeks ago    782MB
+confluentinc/cp-kafka-rest        7.2.1         784b8061ad0c   4 weeks ago    1.76GB
+cnfldemos/kafka-connect-datagen   0.5.3-7.1.0   de0e2396b904   4 months ago   1.46GB
+willem@linux-laptop:~/git/cp-all-in-one/cp-all-in-one-community$
+
